@@ -60,3 +60,68 @@ class Team(models.Model):
     
     def __str__(self):
         return f'{self.partner}  {self.position}'
+
+
+#Services
+class Services(models.Model):
+    service_name = models.CharField(max_length=255)
+    description = models.TextField()
+    
+    class Meta:
+        verbose_name_plural = "Services"
+    
+    def __str__(self):
+        return self.service_name
+
+#Contact
+class Contact(models.Model):
+    username = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    
+    class Meta:
+        verbose_name_plural = "Contact"
+    
+    def __str__(self):
+        return self.email
+
+#Projects
+class Projects_web(models.Model):
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    img = models.ImageField(upload_to='projects-done')
+    image = ImageSpecField(processors=[ResizeToFill(800, 600)], source='img',
+            format='PNG', options={'quality': 100})
+    
+    class Meta:
+        verbose_name_plural = "Projects_web"
+    
+    def __str__(self):
+        return self.name
+
+class Projects_loan(models.Model):
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    img = models.ImageField(upload_to='projects-done')
+    image = ImageSpecField(processors=[ResizeToFill(800, 600)], source='img',
+            format='PNG', options={'quality': 100})
+    
+    class Meta:
+        verbose_name_plural = "Projects_loan"
+    
+    def __str__(self):
+        return self.name
+
+
+class Projects_webstartup(models.Model):
+    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    img = models.ImageField(upload_to='projects-done')
+    image = ImageSpecField(processors=[ResizeToFill(800, 600)], source='img',
+            format='PNG', options={'quality': 100})
+    
+    class Meta:
+        verbose_name_plural = "Projects_webstartup"
+    
+    def __str__(self):
+        return self.name

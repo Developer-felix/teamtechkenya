@@ -51,10 +51,10 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#team">Team</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
+          <li><a href="#portfolio">Projects</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -76,15 +76,53 @@
   <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
     <h1>Welcome to Regna</h1>
     <h2>We are team of talanted designers making websites with Bootstrap</h2>
-    <a href="#about" class="btn-get-started">Get Started</a>
+    <a href="#team" class="btn-get-started">Get Started</a>
   </div>
   
+
+  {% if messages %}
+  {% for message in messages %}
+  <div style="margin-top:5rem;" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">{{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  {% endfor %}
+  {% endif %}
  
 </section><!-- End Hero Section --> {% endfor %}
 
 <main id="main">
+   <!-- ======= Team Section ======= -->
+ <section id="team">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h3 class="section-title">Team</h3>
+      <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+    </div>
+    <div class="row">
+      {% if object_list %}
+      {% for tm in object_list %}
+      <div class="col-lg-3 col-md-6">
+        <div class="member" data-aos="fade-up" data-aos-delay="100">
+          <div class="pic"><img src="{{tm.image.url}}" alt=""></div>
+          <h4>{{tm.partner}}</h4>
+          <span>{{tm.position}}</span>
+          <div class="social">
+            <a href=""><i class="fa fa-twitter"></i></a>
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-google-plus"></i></a>
+            <a href=""><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+{% endif %}
+  </div>
+</section><!-- End Team Section -->
+
     <!-- ======= About Section ======= -->
-    {% if objabout %}
+    {% if objabout%}
               {% for i in objabout %}
     <section id="about">
       <div class="container" data-aos="fade-up">
@@ -120,40 +158,223 @@
       </div>
     </section><!-- End About Section -->{% endfor %}
     {% endif %}
-
-
-
-
    
-    <!-- ======= Team Section ======= -->
-   <section id="team">
-    <div class="container" data-aos="fade-up">
-      <div class="section-header">
-        <h3 class="section-title">Team</h3>
-        <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+
+
+     <!-- ======= Facts Section ======= -->
+     <section id="facts">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Facts</h3>
+          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        </div>
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">5</span>
+            <p>Clients</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">8</span>
+            <p>Projects</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">960</span>
+            <p>Hours Of Support</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">8</span>
+            <p>Hard Workers</p>
+          </div>
+
+        </div>
+
       </div>
-      <div class="row">
-        {% if object_list %}
-        {% for tm in object_list %}
-        <div class="col-lg-3 col-md-6">
-          <div class="member" data-aos="fade-up" data-aos-delay="100">
-            <div class="pic"><img src="{{tm.image.url}}" alt=""></div>
-            <h4>{{tm.partner}}</h4>
-            <span>{{tm.position}}</span>
-            <div class="social">
-              <a href=""><i class="fa fa-twitter"></i></a>
-              <a href=""><i class="fa fa-facebook"></i></a>
-              <a href=""><i class="fa fa-google-plus"></i></a>
-              <a href=""><i class="fa fa-linkedin"></i></a>
+    </section><!-- End Facts Section -->
+
+
+     <!-- ======= Services Section ======= -->
+     <section id="services">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Our Services</h3>
+          <p class="section-description">We provide quality and affordable services to our clients.Following are some of our samples.</p>
+        </div>
+        <div class="row">
+          {% if objabout %}
+          {% for s in services %}
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+            <div class="box">
+              <div class="icon"><a href=""><i class="fa fa-desktop"></i></a></div>
+              <h4 class="title"><a href="">{{s.service_name}}</a></h4>
+              <p class="description">{{s.description}}</p>
             </div>
           </div>
+          {% endfor %}
+          {% endif %}
         </div>
-        {% endfor %}
-  {% endif %}
-    </div>
-  </section><!-- End Team Section -->
+      </div>
+    </section><!-- End Services Section -->
+
+
+        <!-- ======= Call To Action Section ======= -->
+        <section id="call-to-action">
+          <div class="container">
+            <div class="row" data-aos="zoom-in">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3 class="cta-title">Call To Action</h3>
+                <p class="cta-text">Having a problem in software development,cash for use!Let us Know</p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="#contact">Call To Action</a>
+              </div>
+            </div>
+    
+          </div>
+        </section><!-- End Call To Action Section -->
+
+
+     <!-- ======= Portfolio Section ======= -->
+     <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Projects</h3>
+          <p class="section-description">These are some of the projects we have done for our clients.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">moonlightstore</li>
+              <li data-filter=".filter-app1">agridoctor</li>
+              <li data-filter=".filter-app2">vorufaconstruction</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          {% if projects_web %}
+          {% for pro in projects_web %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{{pro.image.url}}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>{{pro.name}}</h4>
+              <p>{{pro.title}}</p>
+              <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+            {% endif %}
+
+            {% if projects_loan %}
+          {% for pro in projects_loan %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app1">
+            <img src="{{pro.image.url}}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>{{pro.name}}</h4>
+              <p>{{pro.title}}</p>
+              <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+            {% endif %}
+
+            {% if projects_webstartup %}
+          {% for pro in projects_webstartup %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app2">
+            <img src="{{pro.image.url}}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>{{pro.name}}</h4>
+              <p>{{pro.title}}</p>
+              <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+            {% endif %}
+       </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+    {% endif %}
+
+
+     <!-- ======= Contact Section ======= -->
+     <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">Contact</h3>
+          <p class="section-description">You can get us through</p>
+        </div>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+
+          <div class="col-lg-3 col-md-4">
+
+            <div class="info">
+              <div>
+                <i class="fa fa-map-marker"></i>
+                <p>A108 Adam Street<br>New York, NY 535022</p>
+              </div>
+
+              <div>
+                <i class="fa fa-envelope"></i>
+                <p>teamtechkenya@gmail.com</p>
+              </div>
+
+              <div>
+                <i class="fa fa-phone"></i>
+                <p>+1 5589 55488 55s</p>
+              </div>
+            </div>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 col-md-8">
+            <div class="form">
+              <form method="POST" id="contact-form">
+                {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" name="username">
+                  </div>
+                <div class="mb-3">
+                  <label class="form-label">Email address</label>
+                  <input type="email" class="form-control"  name="email" >
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="">Message</label>
+                  <input type="text" id="message" name="message" class="form-control">
+                </div>
+                
+              </form>
+              <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+            </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+   
   </main><!-- End #main -->
-  {% endif %}
 
 
 
