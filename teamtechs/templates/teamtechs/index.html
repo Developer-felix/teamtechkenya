@@ -56,6 +56,13 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Projects</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Register</a></li>
+          {% endif %}
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -351,11 +358,11 @@
                 {% csrf_token %}
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="username" class="form-control" id="username" name="username">
+                    <input type="username" class="form-control" id="username" name="username" required>
                   </div>
                 <div class="mb-3">
                   <label class="form-label">Email address</label>
-                  <input type="email" class="form-control"  name="email" >
+                  <input type="email" class="form-control"  name="email" required>
                 </div>
                 <div class="mb-3">
                   <label for="message" class="">Message</label>

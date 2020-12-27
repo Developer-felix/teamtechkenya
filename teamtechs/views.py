@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Q
 from django.views.generic import ListView
 from .models import *
 from .forms import *
 from django.contrib import messages
-
+from django.contrib.auth.models import User,auth
 # Create your views here.
 
 
@@ -37,5 +37,31 @@ def home(request):
 
     return render(request,'teamtechs/index.html',context=context)
 
+
+#registration
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Username has been taken')
+                return redirect('signup')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request, 'Email already exists')
+                return redirect('signup')
+            else:
+                user = User.objects.create_user(username=username,email=email,password=password1)
+                user.save()
+                messages.success(request, 'Congrats for signing up!')
+                return redirect('login')
+        else:
+            messages.info(request, 'password does not match')
+            return redirect('signup')
+
+    else:
+        return render(request,'registration/signup.html',{'title':'signup'})
 
 
