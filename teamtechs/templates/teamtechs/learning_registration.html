@@ -1,4 +1,5 @@
-  <!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
   <html>
     <head>
       <!--Import Google Icon Font-->
@@ -18,24 +19,31 @@
     <body>
     <div class="container">
 
-
-
+    
       <div class="row">
         <div class="col s2"></div>
         <div class="col s8">
           <div class="row">
-            <form class="col s12" method="POST">
-
+              <h4>Admission At TeamTechKenya</h4>
+              <div class="card-panel teal lighten-2">
+                  {% if message %}
+                  {% for message in messages %}
+                  <p>{{message}}</p>
+                  {% endfor %}
+                  {% endif %}
+              </div>
+            <form class="col s12"  method="POST">
+                  {% csrf_token %}
 
              <div class="row">
               <div class="input-field col s12 m6 l6">
                   <i class="material-icons prefix">account_circle</i>
-                  <input placeholder="eg. Example" id="first_name" type="text" class="validate">
+                  <input placeholder="eg. Example" id="first_name" type="text" name="Fname" class="validate" required>
                   <label for="icon_prefix">First Name</label>
                 </div>
                 <div class="input-field col s12 m6 l6">
                   <i class="material-icons prefix">account_circle</i>
-                  <input placeholder="eg. Name2" id="last_name"  type="text" class="validate">
+                  <input placeholder="eg. Name2" id="last_name"  name="Sname" type="text" class="validate" required>
                   <label for="last_name">Second Name</label>
                 </div>
               </div>
@@ -45,14 +53,14 @@
                 <div class="input-field col s12 ">
                   
                   <i class="material-icons prefix">mail_online</i>
-                   <input placeholder="eg. example@gmail.com" id="email" type="email" class="validate">
+                   <input placeholder="eg. example@gmail.com" id="email" name="email" type="email" class="validate" required>
                     <label for="email">Email</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12 ">
                   <i class="material-icons prefix">school</i>
-                  <input placeholder="eg. Karatina University" id="university" type="text" class="validate">
+                  <input placeholder="eg. Karatina University" id="university" name="university" type="text" class="validate" required>
                   <label for="university">University</label>
                 </div>
               </div>
@@ -61,70 +69,66 @@
               <div class="row">
                 <div class="input-field col s12">
                   
-                  <input placeholder="eg. Karatina" id="location" type="text" class="validate">
+                  <input placeholder="eg. Karatina" id="location" name="location" type="text" class="validate" required>
                   <label for="location">Location</label>
                   <i class="material-icons prefix">location_on</i> 
                 </div>
               </div>
               
               
-
-
-
-
-
-
-
-                
                 <p>
                   <p>Select the  Technology you want to learn</p>
                   
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="web dev"/>
                     <span>Web Development</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="Android"/>
                     <span>   Android development</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="Machine Learning"/>
                     <span>   Machine learning</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="Iot" />
                     <span>   IoT</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="SEO"/>
                     <span>   SEO</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="DBMS"/>
                     <span>  Database Management</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="Web backend"/>
                     <span>  Web Backend</span>
                   </label>
                   <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="technology" value="web frontend"/>
                     <span>  Web Frontend</span>
                   </label>
                 </p>
-                
-                
-                </p>
               
-                <button class="btn waves-effect waves-light center" type="submit" name="action">Submit
+        
+<div class="row">
+    
+    <div class="col s6 m6 l6">
+                <button class="btn waves-effect waves-light center" type="submit" name="action" >Letscode
     <i class="material-icons right">send</i>
   </button>
-
-
-
-
-
-            </form>
+    </div>
+    <div class="col s6 m6 l6">
+                <a href="{% url 'home' %}" class="btn waves-effect waves-light center"  name="action" >
+   
+Back
+  </a>
+    </div>
+</div>
+</form>
           </div>
                 
         </div>
