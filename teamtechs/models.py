@@ -125,3 +125,28 @@ class Projects_webstartup(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class Codewithttk(models.Model):
+    school = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='ambassadors/')
+    description = models.TextField()
+    ambassador = models.CharField(max_length=255)
+    ambassador_image = models.ImageField(upload_to='ambassadors/s')
+    whatsap_url = models.URLField(max_length=200,default="https://chat.whatsapp.com/FyMpnLlvKRHDoByXqqNdBw")
+
+        
+    def __str__(self):
+        return self.school
+        
+
+class RegisterWithTTK(models.Model):
+    Fname = models.CharField(max_length=255)
+    Sname = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    university= models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    technology = models.CharField(max_length=255)
+        
+    def __str__(self):
+        return self.email
