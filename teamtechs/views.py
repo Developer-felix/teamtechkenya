@@ -5,6 +5,8 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+from teamtechkenya.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -54,6 +56,10 @@ def signup(request):
                 return redirect('signup')
             else:
                 user = User.objects.create_user(username=username,email=email,password=password1)
+                # subject = 'TeamTechkenya Registration'
+                # message = 'Hae welcome to teamtechkenya software development company send send work to this email or learning session go to www.teamtechkenya/learningsessions and register with us. we are glad coding with you.'
+                # recepient = str(email['email'].value())
+                # send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
                 user.save()
                 messages.success(request, 'Congrats for signing up!')
                 return redirect('login')
@@ -72,11 +78,17 @@ def codewithttk(request):
 
 def registerwithttk(request):
 	if request.method == 'POST':
-		form = RegisterWithTTKForm(request.POST)
-		if form.is_valid():
-			form.save() # saves in database
-			#return redirect('home')
-			messages.success(request, f"Your message has been sent.Thanks for visiting our site!")
+	    email = request.POST['email']
+	    form = RegisterWithTTKForm(request.POST)
+	    if form.is_valid():
+		    
+		    subject = 'TeamTechkenya Learning sessions admissions'
+		    message = 'Hae welcome to teamtechkenya learning session platform where we will help you grow in your coding skills. Wait for the release of our modules by the end of the week.Happy coding with teamtechkenya'
+		    recepient = str(form['email'].value())
+		    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
+		    form.save() # saves in database
+		    #return redirect('home')
+		    messages.success(request, f"Your message has been sent.Thanks for visiting our site!")
 	else:
 		form = RegisterWithTTKForm()
 	return render(request,'teamtechs/registerwithttk.html',{'form': form})
