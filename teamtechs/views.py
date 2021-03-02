@@ -19,7 +19,7 @@ def home(request):
 
     obj = LandingPage.objects.all()
     objabout = About.objects.all()
-    object_list = Team.objects.all()
+    object_list = Team.objects.all().order_by('id')
     services = Services.objects.all()
     projects_web = Projects_web.objects.all()
     projects_loan = Projects_loan.objects.all()
@@ -65,3 +65,20 @@ def signup(request):
         return render(request,'registration/signup.html',{'title':'signup'})
 
 
+def codewithttk(request):
+    ttk = Codewithttk.objects.all()
+    return render(request,'teamtechs/codewithttk.html',{'ttk':ttk})
+    
+
+def registerwithttk(request):
+	if request.method == 'POST':
+		form = RegisterWithTTKForm(request.POST)
+		if form.is_valid():
+			form.save() # saves in database
+			#return redirect('home')
+			messages.success(request, f"Your message has been sent.Thanks for visiting our site!")
+	else:
+		form = RegisterWithTTKForm()
+	return render(request,'teamtechs/registerwithttk.html',{'form': form})
+    
+    
