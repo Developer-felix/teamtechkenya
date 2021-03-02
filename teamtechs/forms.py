@@ -8,3 +8,9 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = [ 'username', 'email', 'message' ]
+        
+        
+class RegisterWithTTKForm(forms.ModelForm):
+    class Meta:
+        model = RegisterWithTTK
+        fields = [ 'Fname','Sname', 'email', 'university','location','technology' ]
