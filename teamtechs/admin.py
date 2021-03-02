@@ -3,7 +3,7 @@ from .models import *
 
 
 admin.site.site_header = 'TeamTechKenya'
-#admin.site.site_title =  ''
+admin.site.site_title =  'teamtechkenya'
 
 admin.site.register(LandingPage)
 admin.site.register(Team)
