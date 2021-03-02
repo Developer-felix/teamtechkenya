@@ -3,7 +3,8 @@ from .models import *
 
 
 admin.site.site_header = 'TeamTechKenya'
-admin.site.site_title =  'teamtechkenya'
+admin.site.site_title =  'TeamTechKenya'
+
 
 admin.site.register(LandingPage)
 admin.site.register(Team)
@@ -13,3 +14,5 @@ admin.site.register(Contact)
 admin.site.register(Projects_web)
 admin.site.register(Projects_loan)
 admin.site.register(Projects_webstartup)
+admin.site.register(Codewithttk)
+admin.site.register(RegisterWithTTK)
